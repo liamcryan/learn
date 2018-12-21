@@ -16,6 +16,7 @@ while True:
     request = client_connection.recv(1024)
     print(request)
     if request[4:request.find(b'HTTP')-1].rfind(b'shutdown') > -1:
+        # because i haven't figure out how to keyboard interrupt
         http_response = b'HTTP/1.1 200 OK\n\nShutting Down...'
         client_connection.sendall(http_response)
         client_connection.close()
